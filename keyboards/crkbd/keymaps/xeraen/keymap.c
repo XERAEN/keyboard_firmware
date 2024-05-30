@@ -19,6 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 #include <stdio.h>
 
+enum custom_keycodes {
+  XPW = SAFE_RANGE,
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* 0 - CAGS Base Layer
@@ -61,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------|    +------+------+------+------+------|
  * |  !   |  ^   |   [  |   ]  |   |  |    |   %  |  &   |  \   | INS  |      |
  * `------+------+------+------+------|    +------+------+------+-------------'
- *               |  DEL |  DEL |   _  |    |   _  |      |      |
+ *               |  XPW |  DEL |   _  |    |   _  |      |      |
  *               '--------------------'    '--------------------'
  */
   [2] = LAYOUT_split_3x6_3(
@@ -72,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_NO,KC_EXCLAIM,KC_CIRCUMFLEX,KC_LEFT_BRACKET,KC_RIGHT_BRACKET,KC_PIPE, KC_PERCENT,KC_AMPERSAND,KC_BACKSLASH,KC_INS,KC_NO,KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_DEL,KC_DEL,KC_UNDERSCORE,KC_UNDERSCORE, XXXXXXX, XXXXXXX
+                                          XPW,KC_DEL,KC_UNDERSCORE,KC_UNDERSCORE, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -375,6 +379,13 @@ bool oled_task_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case XPW:
+      if (record->event.pressed) {
+        SEND_STRING("THIS_IS_MY_password!");
+      }
+      break;
+  }
   if (record->event.pressed) {
     set_keylog(keycode, record);
   }
