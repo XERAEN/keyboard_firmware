@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                            |--------+--------+--------+--------+--------+--------|
      XXXXXXX,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,  KC_COMM,  KC_DOT, KC_SLSH, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|          |--------+--------+--------+--------+--------+--------+--------|
-                                    LT(5,KC_SPC),  LT(4,KC_TAB),  LT(3,KC_BSPC),  LT(2,KC_SPC), LSFT_T(KC_ENT),CW_TOGG
+                                    LT(5,KC_SPC),  LT(4,KC_TAB),  LT(3,KC_BSPC),  LT(2,KC_SPC), LT(3,KC_ENT),CW_TOGG
                                       //`--------------------------'  `        --------------------------'
 
   ),
@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                            |--------+--------+--------+--------+--------+--------|
      XXXXXXX,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,  KC_COMM,  KC_DOT, KC_SLSH, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|          |--------+--------+--------+--------+--------+--------+--------|
-                                    LT(5,KC_SPC),  LT(4,KC_TAB),  LT(3,KC_BSPC),  LT(2,KC_SPC), LSFT_T(KC_ENT),CW_TOGG
+                                    LT(5,KC_SPC),  LT(4,KC_TAB),  LT(3,KC_BSPC),  LT(2,KC_SPC), LT(3,KC_ENT),CW_TOGG
                                       //`--------------------------'  `        --------------------------'
 
   ),
@@ -82,22 +82,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* 3 - Numbers Layer
  * ,---------- -----------------------.    ,----------------------------------.
- * | Boot |      |      |      |      |    |      |  7   |  8   |  9   |  +   |
+ * | Boot |      |      | Vol+ |      |    |      |  7   |  8   |  9   |  +   |
  * |------+------+------+------+------|    +------+------+------+------+------|
- * |      |      |      |      |      |    |      |  4   |  5   |  6   |  +   |
+ * |      |      | Prev | Play | Next |    |      |  4   |  5   |  6   |  +   |
  * |------+------+------+------+------|    +------+------+------+------+------|
- * |      |      |      |      |      |    |      |  1   |  2   |  3   |  +   |
+ * |      |      |      | Vol- |      |    |      |  1   |  2   |  3   |  +   |
  * `------+------+------+------+------|    +------+------+------+-------------'
  *               |      |      |      |    |   0  |  0   |  0   |
  *               '--------------------'    '--------------------'
  */
   [3] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX,  KC_7  ,  KC_8  ,  KC_9  ,KC_PLUS , XXXXXXX,
+      KC_NO, QK_BOOT, KC_NO, KC_NO, KC_AUDIO_VOL_UP, KC_NO,                       KC_NO,  KC_7  ,  KC_8  ,  KC_9  ,KC_PLUS , KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX,  KC_4  ,  KC_5  ,  KC_6  ,KC_PLUS , XXXXXXX,
+  KC_NO,KC_NO,KC_NO,KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,  KC_NO,   KC_4  ,  KC_5  ,  KC_6  ,KC_PLUS , KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX,  KC_1  ,  KC_2  ,  KC_3  ,KC_PLUS , XXXXXXX,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_AUDIO_VOL_DOWN, KC_NO,           KC_NO,  KC_1  ,  KC_2  ,  KC_3  ,KC_PLUS , KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           XXXXXXX, XXXXXXX, XXXXXXX,     KC_0  ,  KC_0  ,  KC_0
                                       //`--------------------------'  `--------------------------'
