@@ -18,6 +18,7 @@ enum layer_names {
 
 enum custom_keycodes {
   CAGS = SAFE_RANGE,
+  XPW = SAFE_RANGE,
   GACS,
   SYMBOLS,
   NUMBERS,
@@ -78,41 +79,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |  ~   |  #   |   {  |   }  |   *  |   +  |  <   |  >   | ESC  |      |      |
+ * |      |  ~   |  #   |   {  |   }  |   *  |   +  |  <   |  >   | ESC  | ESC  |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |  @   |  $   |   (  |   )  |   -  |   =  |  "   |  '   |  `   |  :   |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |  !   |  ^   |   [  |   ]  |   |  |   %  |  &   |  \   | INS  |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | GACS |      |      |  DEL |  DEL |   _  |   _  |      |      |      | GACS | CAGS |
+ * | GACS |      |      |  XPW |  DEL |   _  |   _  |      |      |      | GACS | CAGS |
  * `-----------------------------------------------------------------------------------'
  */
 [_SYMBOLS] = LAYOUT(
   KC_NO,    KC_NO,        KC_NO,         KC_NO,               KC_NO,                KC_NO,         KC_NO,         KC_NO,                 KC_NO,                  KC_NO,  KC_NO,    KC_NO,
-  KC_NO,    KC_TILDE,     KC_HASH,       KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, KC_ASTERISK,   KC_PLUS,       KC_LEFT_ANGLE_BRACKET, KC_RIGHT_ANGLE_BRACKET, KC_ESC, KC_NO,    KC_NO,
+  KC_NO,    KC_TILDE,     KC_HASH,       KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, KC_ASTERISK,   KC_PLUS,       KC_LEFT_ANGLE_BRACKET, KC_RIGHT_ANGLE_BRACKET, KC_ESC, KC_ESC,   KC_NO,
   KC_NO,    KC_AT,        KC_DOLLAR,     KC_LEFT_PAREN,       KC_RIGHT_PAREN,       KC_MINUS,      KC_EQUAL,      KC_DOUBLE_QUOTE,       KC_QUOTE,               KC_GRV, KC_COLON, KC_NO,
   KC_NO,    KC_EXCLAIM,   KC_CIRCUMFLEX, KC_LEFT_BRACKET,     KC_RIGHT_BRACKET,     KC_PIPE,       KC_PERCENT,    KC_AMPERSAND,          KC_BACKSLASH,           KC_INS, KC_NO,    KC_NO,
-  TO(GACS), KC_NO,        KC_NO,         KC_DEL,              KC_DEL,               KC_UNDERSCORE, KC_UNDERSCORE, KC_NO,                 KC_NO,                  KC_NO,  TO(GACS), TO(CAGS)
+  TO(GACS), KC_NO,        KC_NO,         XPW,              KC_DEL,               KC_UNDERSCORE, KC_UNDERSCORE, KC_NO,                 KC_NO,                  KC_NO,  TO(GACS), TO(CAGS)
 ),
 
 /* Numbers
  * ,-----------------------------------------------------------------------------------.
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |   7  |   8  |   9  |  +   |      |
+ * |      |      |      |      | Vol+ |      |      |   7  |   8  |   9  |  +   |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |   4  |   5  |   6  |  +   |      |
+ * |      |      |      | Prev | Play | Next |      |   4  |   5  |   6  |  +   |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |   1  |   2  |   3  |Enter | GACS |
+ * |      |      |      |      | Vol- |      |      |   1  |   2  |   3  |  +   | GACS |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | GACS |      |      |      |      |      |   0  |   0  |   0  |   .  |Enter | CAGS |
  * `-----------------------------------------------------------------------------------'
  */
 [_NUMBERS] = LAYOUT(
-  KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,  KC_NO,    KC_NO,
-  KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_7,  KC_8,  KC_9,   KC_PLUS,  KC_NO,
-  KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_4,  KC_5,  KC_6,   KC_PLUS,  KC_NO,
-  KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_1,  KC_2,  KC_3,   KC_ENTER, TO(GACS),
+  KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,  KC_NO,   KC_NO,
+  KC_NO,    KC_NO, KC_NO, KC_NO, KC_AUDIO_VOL_UP, KC_NO, KC_NO, KC_7, KC_8, KC_9, KC_PLUS, KC_NO,
+  KC_NO, KC_NO, KC_NO, KC_MEDIA_PREV_TRACK, KC_MEDIA_PLAY_PAUSE, KC_MEDIA_NEXT_TRACK, KC_NO, KC_4, KC_5, KC_6, KC_PLUS, KC_NO,
+  KC_NO,    KC_NO, KC_NO, KC_NO, KC_AUDIO_VOL_DOWN, KC_NO, KC_NO, KC_1, KC_2, KC_3, KC_PLUS, TO(GACS),
   TO(GACS), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_0,  KC_0,  KC_0,  KC_DOT, KC_ENTER, TO(CAGS)
 ),
 
@@ -124,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |MsScUp|MsLft | MsDn |MsRgt |MsScDn| Left | Down |  Up  |Right |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      | Home | PgDn | PgUp | End  |      |      |
+ * |      |      |      |      |      |      |      | Home | PgDn | PgUp | End  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | GACS |      |      |      |      |      |      |      |      |      | GACS | CAGS |
  * `-----------------------------------------------------------------------------------'
@@ -134,7 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO,    KC_NO,       KC_NO,      KC_NO,      KC_NO,       KC_NO,         KC_NO,   KC_NO,        KC_NO,      KC_NO,    KC_NO,    KC_NO,
   KC_NO,    KC_NO,       KC_MS_BTN2, KC_MS_UP,   KC_MS_BTN1,  KC_MS_BTN3,    KC_NO,   KC_NO,        KC_NO,      KC_NO,    KC_NO,    KC_NO,
   KC_NO,    KC_MS_WH_UP, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, KC_MS_WH_DOWN, KC_LEFT, KC_DOWN,      KC_UP,      KC_RIGHT, KC_NO,    KC_NO,
-  KC_NO,    KC_NO,       KC_NO,      KC_NO,      KC_NO,       KC_NO,         KC_HOME, KC_PAGE_DOWN, KC_PAGE_UP, KC_END,   KC_NO,    KC_NO,
+  KC_NO,    KC_NO,       KC_NO,      KC_NO,      KC_NO,       KC_NO,         KC_NO,   KC_HOME,  KC_PAGE_DOWN, KC_PAGE_UP, KC_END,   KC_NO,
   TO(GACS), KC_NO,       KC_NO,      KC_NO,      KC_NO,       KC_NO,         KC_NO,   KC_NO,        KC_NO,      KC_NO,    TO(GACS), TO(CAGS)
 ),
 
@@ -229,3 +230,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case XPW:
+      if (record->event.pressed) {
+        SEND_STRING("THIS_IS_MY_password!");
+      }
+      break;
+  }
+  return true;
+}
