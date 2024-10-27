@@ -28,7 +28,6 @@ enum layer_number {
 };
 
 enum custom_keycodes {
-  LOWER = SAFE_RANGE,
   CAGS = SAFE_RANGE,
   XPW = SAFE_RANGE,
   MACOS,
@@ -168,11 +167,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+/*
 #define L_BASE _MACOS
 #define L_LOWER (1<<_CAGS)
 #define L_RAISE (1<<_RAISE)
 #define L_ADJUST (1<<_ADJUST)
 #define L_ADJUST_TRI (L_ADJUST|L_RAISE|L_LOWER)
+*/
 
 #ifdef OLED_ENABLE
 #include <stdio.h>
@@ -264,35 +265,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("THIS_IS_MY_password!");
       }
       break;
-    case LOWER:
-      if (record->event.pressed) {
-        layer_on(_CAGS);
-      } else {
-        layer_off(_CAGS);
-      }
-
-      update_tri_layer(_CAGS, _RAISE, _ADJUST);
-      break;
-    case RAISE:
-      if (record->event.pressed) {
-        layer_on(_RAISE);
-      } else {
-        layer_off(_RAISE);
-      }
-
-      update_tri_layer(_CAGS, _RAISE, _ADJUST);
-      break;
-    case KANJI:
-      if (record->event.pressed) {
-        if (keymap_config.swap_lalt_lgui == false) {
-          register_code(KC_LNG2);
-        } else {
-          register_code16(A(KC_GRV));
-        }
-      } else {
-        unregister_code(KC_LNG2);
-      }
-      break;
     #ifdef RGBLIGHT_ENABLE
       case RGBRST:
           if (record->event.pressed) {
@@ -308,15 +280,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   UPDATE_KEYMAP_STATUS();
   return result;
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case XPW:
-      if (record->event.pressed) {
-        SEND_STRING("THIS_IS_MY_password!");
-      }
-      break;
-  }
-  return true;
 }
