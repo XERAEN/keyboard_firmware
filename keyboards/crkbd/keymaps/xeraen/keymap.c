@@ -25,6 +25,15 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
+/*
+ * 0 - CAGS
+ * 1 - GACS
+ * 2 - Symbols
+ * 3 - Numbers
+ * 4 - Nav
+ * 5 - Function
+ */
+
 /* 0 - CAGS Base Layer
  *   - uses GACS for home row modifiers
  */
@@ -59,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* 2 - Symbols Layer
  * ,----------------------------------.    ,----------------------------------.
- * |  ~   |  #   |   {  |   }  |   *  |    |   +  |  <   |  >   | ESC  |      |
+ * |  ~   |  #   |   {  |   }  |   *  |    |   +  |  <   |  >   |  ESC |  ESC |
  * |------+------+------+------+------|    +------+------+------+------+------|
  * |  @   |  $   |   (  |   )  |   -  |    |   =  |  "   |  '   |  `   |  :   |
  * |------+------+------+------+------|    +------+------+------+------+------|
@@ -70,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   [2] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_NO,  KC_TILDE, KC_HASH,KC_LEFT_CURLY_BRACE,KC_RIGHT_CURLY_BRACE,KC_ASTERISK,KC_PLUS,KC_LEFT_ANGLE_BRACKET,KC_RIGHT_ANGLE_BRACKET,KC_ESC,KC_NO,KC_NO,
+      KC_NO,  KC_TILDE, KC_HASH,KC_LEFT_CURLY_BRACE,KC_RIGHT_CURLY_BRACE,KC_ASTERISK,KC_PLUS,KC_LEFT_ANGLE_BRACKET,KC_RIGHT_ANGLE_BRACKET,KC_ESC,KC_ESC,KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_NO,   KC_AT, KC_DOLLAR,KC_LEFT_PAREN,KC_RIGHT_PAREN,KC_MINUS,         KC_EQUAL,KC_DOUBLE_QUOTE,KC_QUOTE,KC_GRV,KC_COLON, KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -82,22 +91,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* 3 - Numbers Layer
  * ,---------- -----------------------.    ,----------------------------------.
- * | Boot |      |      | Vol+ |      |    |      |  7   |  8   |  9   |  +   |
+ * | Boot |      |      |      |      |    |      |  7   |  8   |  9   |  +   |
  * |------+------+------+------+------|    +------+------+------+------+------|
- * |      |      | Prev | Play | Next |    |      |  4   |  5   |  6   |  +   |
+ * |      |      |      |      |      |    |      |  4   |  5   |  6   |  +   |
  * |------+------+------+------+------|    +------+------+------+------+------|
- * |      |      |      | Vol- |      |    |      |  1   |  2   |  3   |  +   |
+ * |      |      |      |      |      |    |      |  1   |  2   |  3   |  +   |
  * `------+------+------+------+------|    +------+------+------+-------------'
  *               |      |      |      |    |   0  |  0   |  0   |
  *               '--------------------'    '--------------------'
  */
   [3] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_NO, QK_BOOT, KC_NO, KC_NO, KC_AUDIO_VOL_UP, KC_NO,                       KC_NO,  KC_7  ,  KC_8  ,  KC_9  ,KC_PLUS , KC_NO,
+      KC_NO,   QK_BOOT,  KC_NO,  KC_NO,   KC_NO,   KC_NO,                         KC_NO ,  KC_7  ,  KC_8  ,  KC_9  ,KC_PLUS , KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  KC_NO,KC_NO,KC_NO,KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,  KC_NO,   KC_4  ,  KC_5  ,  KC_6  ,KC_PLUS , KC_NO,
+      KC_NO,   KC_NO,    KC_NO,  KC_NO,   KC_NO,   KC_NO,                         KC_NO ,  KC_4  ,  KC_5  ,  KC_6  ,KC_PLUS , KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_AUDIO_VOL_DOWN, KC_NO,           KC_NO,  KC_1  ,  KC_2  ,  KC_3  ,KC_PLUS , KC_NO,
+      KC_NO,   KC_NO,    KC_NO,  KC_NO,   KC_NO,   KC_NO,                         KC_NO ,  KC_1  ,  KC_2  ,  KC_3  ,KC_PLUS , KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           XXXXXXX, XXXXXXX, XXXXXXX,     KC_0  ,  KC_0  ,  KC_0
                                       //`--------------------------'  `--------------------------'
@@ -107,22 +116,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,---------- -----------------------.    ,----------------------------------.
  * | Boot |      |      |      |      |    |      |      |      |      |      |
  * |------+------+------+------+------|    +------+------+------+------+------|
- * |      |      |      |      |      |    | Left | Down |  Up  |Right |      |
+ * |      |      | GACS | CAGS |      |    | Left | Down |  Up  |Right |      |
  * |------+------+------+------+------|    +------+------+------+------+------|
  * |      |      |      |      |      |    |      | Home | PgUp | PgDn | End  |
  * `------+------+------+------+------|    +------+------+------+-------------'
- *               |      | CAGS | GACS |    | DEL  |      |      |
+ *               |      |      |      |    | DEL  |      |      |
  *               '--------------------'    '--------------------'
  */
   [4] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       XXXXXXX, QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     KC_LEFT ,KC_DOWN ,  KC_UP ,KC_RIGHT, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX,  TO(1),   TO(0),  XXXXXXX,                     KC_LEFT ,KC_DOWN ,  KC_UP ,KC_RIGHT, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    XXXXXXX,KC_HOME,KC_PAGE_UP,KC_PAGE_DOWN,KC_END, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX, TO(0)  , TO(1)  ,   KC_DEL,  XXXXXXX, XXXXXXX
+                                          XXXXXXX, XXXXXXX, XXXXXXX,    KC_DEL,  XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -382,7 +391,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case XPW:
       if (record->event.pressed) {
-        SEND_STRING("THIS_IS_MY_password!");
+        SEND_STRING("notactuallyanythingatall");
       }
       break;
   }

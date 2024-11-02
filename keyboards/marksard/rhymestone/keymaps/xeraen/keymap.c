@@ -262,7 +262,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case XPW:
       if (record->event.pressed) {
-        SEND_STRING("THIS_IS_MY_password!");
+        SEND_STRING("notactuallyanythingatall");
       }
       break;
     #ifdef RGBLIGHT_ENABLE
